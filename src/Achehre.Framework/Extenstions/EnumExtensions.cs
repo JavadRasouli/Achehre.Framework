@@ -118,5 +118,11 @@ namespace Achehre.Framework.Extenstions
 
             return resourceKey; // Fallback with the key name
         }
+        
+        public static IEnumerable<KeyValuePair<int, string>> ToKeyValueList<T>() where T : struct
+        {
+            return Enum.GetValues(typeof(T)).Cast<Enum>()
+                .Select(e => new KeyValuePair<int, string>(Convert.ToInt32(e), GetDisplayName(e))).ToList();
+        }
     }
 }
